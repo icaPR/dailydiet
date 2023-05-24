@@ -6,3 +6,9 @@ declare module "styled-components" {
 
   export interface DefaultTheme extends ThemeType {}
 }
+
+export type ColorStyle = "POSITIVE" | "NEGATIVE" | "NEUTRAL";
+
+export type PropsColorStyle = {
+  type: ColorStyle;
+};
