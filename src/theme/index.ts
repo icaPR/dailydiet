@@ -20,8 +20,8 @@ export default {
   },
 
   FONT_WEIGHTS: {
-    NORMAL: "Nunito_Sans_400Regular",
-    BOLD: "Nunito_Sans_400Bold",
+    NORMAL: "NunitoSans_400Regular",
+    BOLD: "NunitoSans_700Bold",
   },
 
   FONT_SIZES: {
