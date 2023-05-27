@@ -1,16 +1,18 @@
-import { TouchableOpacityProps } from "react-native";
-import { Container, Icon, PropsButtonIconStyle } from "./styles";
+import { TouchableOpacityProps } from "react-native/types";
+import { Container } from "./styles";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { ColorStyle } from "src/@types/styled";
+import { Icon } from "@components/Icon";
 
 type Props = TouchableOpacityProps & {
   icon: keyof typeof MaterialCommunityIcons.glyphMap;
-  type?: PropsButtonIconStyle;
+  type?: ColorStyle;
 };
 
 export function ButtonIcon({ icon, type = "NEUTRAL", ...rest }: Props) {
   return (
-    <Container>
-      <Icon name={icon} type={type} />
+    <Container {...rest}>
+      <Icon iconName={icon} type={type} />
     </Container>
   );
 }
