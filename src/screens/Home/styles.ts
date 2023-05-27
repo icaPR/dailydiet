@@ -1,5 +1,5 @@
 import { Image, TouchableOpacity, TouchableOpacityProps } from "react-native";
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 import { PropsColorStyle } from "src/@types/styled";
 
 export const Container = styled.View`
@@ -15,10 +15,12 @@ export const HeaderHome = styled.View`
   justify-content: space-between;
   flex-direction: row;
 `;
+
 export const Logo = styled(Image)`
   width: 98;
   height: 48;
 `;
+
 export const Perfil = styled(Image)`
   width: 48;
   height: 48;
@@ -40,8 +42,17 @@ export const Percent = styled(TouchableOpacity)<PropsColorStyle>`
       ? theme.COLORS.RED_LIGHT
       : theme.COLORS.GRAY_6};
 `;
+
 export const IconPoisiton = styled.View`
   position: absolute;
   top: 10;
   right: 10;
+`;
+
+export const Title = styled.Text`
+  ${({ theme }) => css`
+    margin: 38px 0 8px 0;
+    font-size: ${theme.FONT_SIZES.M}px;
+    font-family: ${theme.FONT_WEIGHTS.NORMAL};
+  `}
 `;
