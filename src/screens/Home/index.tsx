@@ -6,6 +6,7 @@ import {
   Perfil,
   IconPoisiton,
   Title,
+  ContainerMeal,
 } from "./styles";
 import { Higtlight } from "@components/Hightlight";
 import { useCallback, useState } from "react";
@@ -16,7 +17,7 @@ import { MealCard } from "@components/MealCard";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { getGroupsMeal } from "@storage/GroupMeal/getGroupsMeal";
 import { getMeal } from "@storage/Meal/getMeal";
-import { Alert, FlatList } from "react-native";
+import { Alert, FlatList, ScrollView } from "react-native";
 import { MealStorageDTO } from "@storage/Meal/MealStorageDTO";
 
 type PropsDataMeal = {
@@ -55,7 +56,6 @@ export function Home() {
     try {
       const dataGroups = await getGroupsMeal();
       setDataGroups(dataGroups);
-      console.log("Aqui" + dataGroups);
     } catch (error) {
     } finally {
     }
@@ -84,11 +84,17 @@ export function Home() {
       </Percent>
       <Title>Refeições</Title>
       <Button iconName="plus" title="Nova refeição" onPress={handleNewMeal} />
-      <FlatList
-        data={dataGroups}
-        keyExtractor={(item) => item}
-        renderItem={({ item }) => <MealCard dateSnack={item} />}
-      ></FlatList>
+      <ScrollView>
+        {dataGroups.map((item) => (
+          <MealCard key={item} dateSnack={item} />
+        ))}
+      </ScrollView>
+
+      {/* <FlatList
+          data={dataGroups}
+          keyExtractor={(item, index) => `${item}_${index}`}
+          renderItem={({ item }) => <MealCard dateSnack={item} />}
+        ></FlatList> */}
     </Container>
   );
 }
