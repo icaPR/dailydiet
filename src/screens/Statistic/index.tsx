@@ -27,7 +27,7 @@ export function Statistic() {
   }
 
   return (
-    <Container>
+    <Container type={percentageStyle}>
       <ButtonIcon
         icon="arrow-left"
         type={percentageStyle}

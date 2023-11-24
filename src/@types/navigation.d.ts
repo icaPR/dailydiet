@@ -12,6 +12,7 @@ export declare global {
         mealInSide?: string;
         mealOutSide?: string;
       };
+      newMeal: undefined;
     }
   }
 }
