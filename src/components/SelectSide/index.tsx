@@ -26,11 +26,6 @@ export function SelectSide({
           <Icon iconName={iconName} type={typeName} />
           <NameButton>{title}</NameButton>
         </SelectedButton>
-      ) : selected === false ? (
-        <SelectButton onPress={() => functionSelect(title)}>
-          <Icon iconName={iconName} type={typeName} />
-          <NameButton>{title}</NameButton>
-        </SelectButton>
       ) : (
         <SelectButton onPress={() => functionSelect(title)}>
           <Icon iconName={iconName} type={typeName} />

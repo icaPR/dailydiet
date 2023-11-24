@@ -3,7 +3,7 @@ import { IconComponent } from "./styles";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 type Props = {
-  iconName: keyof typeof MaterialCommunityIcons.glyphMap;
+  iconName?: keyof typeof MaterialCommunityIcons.glyphMap;
   type?: ColorStyle;
 };
 
