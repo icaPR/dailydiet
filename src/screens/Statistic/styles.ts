@@ -1,8 +1,14 @@
+import { PropsColorStyle } from "src/@types/styled";
 import styled, { css } from "styled-components/native";
 
-export const Container = styled.View`
+export const Container = styled.View<PropsColorStyle>`
   flex: 1;
-  background-color: ${({ theme }) => theme.COLORS.RED_LIGHT};
+  background-color: ${({ type, theme }) =>
+    type === "POSITIVE"
+      ? theme.COLORS.GREEN_LIGHT
+      : type === "NEGATIVE"
+      ? theme.COLORS.RED_LIGHT
+      : theme.COLORS.GRAY_6};
 `;
 
 export const GeneralStats = styled.View`
