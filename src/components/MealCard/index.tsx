@@ -30,7 +30,7 @@ export function MealCard({ dateSnack }: Props) {
       <Title>{dateSnack}</Title>
       <FlatList
         data={dataMeal}
-        keyExtractor={(item) => item.nameMeals}
+        keyExtractor={(index) => `${dateSnack}_${index}`}
         renderItem={({ item }) => (
           <Meal time={item.time} status={"NEUTRAL"} title={item.nameMeals} />
         )}
