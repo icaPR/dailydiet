@@ -5,6 +5,7 @@ import styled, { css } from "styled-components/native";
 export const Container = styled(TouchableOpacity)`
   height: 52px;
   width: 100%;
+  margin-top: 10px;
   flex-direction: row;
   align-items: center;
   justify-content: center;

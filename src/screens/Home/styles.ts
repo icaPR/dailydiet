@@ -56,3 +56,8 @@ export const Title = styled.Text`
     font-family: ${theme.FONT_WEIGHTS.NORMAL};
   `}
 `;
+
+export const ContainerMeal = styled.View`
+  background-color: ${({ theme }) => theme.COLORS.GRAY_7};
+  border: 1px solid red;
+`;
