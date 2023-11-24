@@ -16,6 +16,7 @@ import { useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { createMeal } from "@storage/Meal/createMeal";
 import { MealStorageDTO } from "@storage/Meal/MealStorageDTO";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export function NewMeal() {
   const [selectedActive, setSelectedActive] = useState<boolean>();
@@ -76,6 +77,7 @@ export function NewMeal() {
           setDatePoint(datePoint);
           console.log(datePoint);
           await createMeal({ ...meal, date: datePoint });
+          handleHome();
         }
       }
     }
