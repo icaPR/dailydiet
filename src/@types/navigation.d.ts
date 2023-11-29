@@ -13,6 +13,7 @@ export declare global {
         mealOutSide?: string;
       };
       newMeal: undefined;
+      messageScreen: boolean;
     }
   }
 }
