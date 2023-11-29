@@ -69,6 +69,10 @@ export function NewMeal() {
     navigation.navigate("home");
   }
 
+  function handleMessage() {
+    navigation.navigate("messageScreen", meal.status);
+  }
+
   async function handleAddMeal(meal: MealStorageDTO | undefined) {
     if (meal !== undefined) {
       if (meal.date && meal.time) {
@@ -77,9 +81,9 @@ export function NewMeal() {
           setDatePoint(datePoint);
           console.log(datePoint);
           await createMeal({ ...meal, date: datePoint });
-          handleHome();
         }
       }
+      handleMessage();
     }
   }
 
