@@ -1,7 +1,7 @@
 export type MealStorageDTO = {
-  nameMeals?: string | any;
+  nameMeals: string;
   description?: string;
-  date?: string;
+  date: string;
   time: string;
   status: boolean;
 };
