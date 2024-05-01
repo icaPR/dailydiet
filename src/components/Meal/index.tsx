@@ -5,11 +5,12 @@ type Props = {
   time: string;
   title: string;
   status: ColorStyle;
+  navigation: () => void;
 };
 
-export function Meal({ time, title, status }: Props) {
+export function Meal({ time, title, status, navigation }: Props) {
   return (
-    <Container>
+    <Container onPress={navigation}>
       <Time>{time}</Time>
       <TitleMeal>{title}</TitleMeal>
       <Status type={status} />
