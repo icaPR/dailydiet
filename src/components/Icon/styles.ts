@@ -13,5 +13,7 @@ export const IconComponent = styled(
       ? theme.COLORS.RED_DARK
       : type === "NEUTRAL"
       ? theme.COLORS.GRAY_2
+      : type === "DARK"
+      ? theme.COLORS.GRAY_1
       : theme.COLORS.WHITE,
 }))``;
