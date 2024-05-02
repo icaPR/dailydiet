@@ -4,12 +4,14 @@ import { ColorStyle } from "src/@types/styled";
 
 type Props = {
   type: ColorStyle;
+  value: number;
+  subtitle: string;
 };
 
-export function MealStatistic({ type }: Props) {
+export function MealStatistic({ type, value, subtitle }: Props) {
   return (
     <Container type={type}>
-      <Higtlight title="22" subtitle="melhor sequência de pratos da dieta" />
+      <Higtlight title={value} subtitle={subtitle} />
     </Container>
   );
 }
