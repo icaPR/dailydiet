@@ -1,43 +1,37 @@
 import { Meal } from "@components/Meal";
 import { Container, Title } from "./styles";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getMeal } from "@storage/Meal/getMeal";
 import { MealStorageDTO } from "@storage/Meal/MealStorageDTO";
-import { FlatList } from "react-native";
-import { useFocusEffect } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
 type Props = {
-  dateSnack: string;
+  meal: MealStorageDTO;
 };
 
-export function MealCard({ dateSnack }: Props) {
-  const [dataMeal, setDataMeal] = useState<MealStorageDTO[]>([]);
-  async function fetchGroups(dateSnack: string) {
-    try {
-      const dataMeal = await getMeal(dateSnack);
-      setDataMeal(dataMeal);
-    } catch (error) {
-    } finally {
-    }
+export function MealCard({ meal }: Props) {
+  const navigation = useNavigation();
+  function handleCardMeal(meal: MealStorageDTO) {
+    navigation.navigate("cardMeal", { meal });
   }
-
-  useEffect(() => {
-    fetchGroups(dateSnack);
-  }, [dateSnack]);
 
   return (
     <Container>
-      <Title>{dateSnack}</Title>
-      <FlatList
-        data={dataMeal}
-        keyExtractor={(index) => `${dateSnack}_${index}`}
-        renderItem={({ item }) => (
-          <Meal time={item.time} status={"NEUTRAL"} title={item.nameMeals} />
-        )}
-      ></FlatList>
+      {meal.status ? (
+        <Meal
+          time={meal.time}
+          status={"POSITIVE"}
+          title={meal.nameMeals}
+          navigation={() => handleCardMeal(meal)}
+        />
+      ) : (
+        <Meal
+          time={meal.time}
+          status={"NEGATIVE"}
+          title={meal.nameMeals}
+          navigation={() => handleCardMeal(meal)}
+        />
+      )}
     </Container>
   );
 }
-/*
-<Title>{dateSnack}</Title>
-<Meal time="20:00" title="X-Tudo" status={"NEGATIVE"} />*/
