@@ -1,6 +1,5 @@
 import { Icon } from "@components/Icon";
 import { Container, NameButton, SelectButton, SelectedButton } from "./styles";
-import { useState } from "react";
 import { ColorStyle } from "src/@types/styled";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
