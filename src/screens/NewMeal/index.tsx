@@ -16,40 +16,36 @@ import { useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { createMeal } from "@storage/Meal/createMeal";
 import { MealStorageDTO } from "@storage/Meal/MealStorageDTO";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as yup from "yup";
+import { Alert } from "react-native";
+
+const newMealSchema = yup.object({
+  nameMeals: yup.string().required("Nome é obrigatória."),
+  description: yup.string(),
+  date: yup
+    .string()
+    .matches(/^\d{2}\/\d{2}\/\d{4}$/, "Formato de data inválido (DD/MM/YYYY).")
+    .required("Data é obrigatória"),
+  time: yup
+    .string()
+    .matches(/^\d{2}:\d{2}$/, "Formato de hora inválido (HH:mm).")
+    .required("Hora é obrigatória"),
+  status: yup.boolean().required("Escolha o status dessa refeição."),
+});
 
 export function NewMeal() {
   const [selectedActive, setSelectedActive] = useState<boolean>();
   const [selectedDisable, setSelectedDisable] = useState<boolean>();
-  const mealDefaud = {
-    nameMeals: "",
-    description: "",
-    date: "",
-    time: "",
-    status: true,
-  };
-  const [meal, setMeal] = useState<MealStorageDTO>(mealDefaud);
-  const [datePoint, setDatePoint] = useState<string>("");
+  const [meal, setMeal] = useState<MealStorageDTO>({} as MealStorageDTO);
   const navigation = useNavigation();
 
-  const route = useRoute();
+  /*
+  const [datePoint, setDatePoint] = useState<string>();
+  const datePoint = meal.date?.replace(/\//g, ".");
+  setDatePoint(datePoint);
+*/
 
-  function isValidDate(date: string, time: string) {
-    const [day, month, year] = date.split("/");
-    const [hours, minutes] = time.split(":");
-    const parsedDate = new Date(
-      `${year}-${month}-${day}T${hours}:${minutes}:00`
-    );
-    if (
-      Number(day) <= 31 &&
-      Number(month) <= 12 &&
-      parsedDate.getDate() === Number(day) &&
-      parsedDate.getMonth() + 1 === Number(month) &&
-      parsedDate.getFullYear() === Number(year)
-    ) {
-      return true;
-    } else return false;
-  }
+  const route = useRoute();
 
   function selectRatio(buttonName: string) {
     if (buttonName === "Sim") {
@@ -73,17 +69,14 @@ export function NewMeal() {
     navigation.navigate("messageScreen", meal.status);
   }
 
-  async function handleAddMeal(meal: MealStorageDTO | undefined) {
-    if (meal !== undefined) {
-      if (meal.date && meal.time) {
-        if (isValidDate(meal.date, meal.time)) {
-          const datePoint = meal.date.replace(/\//g, ".");
-          setDatePoint(datePoint);
-          console.log(datePoint);
-          await createMeal({ ...meal, date: datePoint });
-        }
-      }
+  async function handleAddMeal(meal: MealStorageDTO) {
+    try {
+      await newMealSchema.validate(meal, { abortEarly: false });
+      await createMeal(meal);
       handleMessage();
+    } catch (validationError) {
+      const errors = validationError.errors || [validationError.message];
+      Alert.alert("Erro", errors.join("\n"));
     }
   }
 

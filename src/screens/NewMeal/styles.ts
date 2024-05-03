@@ -3,29 +3,36 @@ import styled, { css } from "styled-components/native";
 
 export const Container = styled.View`
   flex: 1;
-  background-color: ${({ theme }) => theme.COLORS.GRAY_5};
+  justify-content: center;
 `;
+
 export const Header = styled.View`
+  flex: 1;
+  margin-bottom: -20px;
   flex-direction: row;
-  height: 15%;
-  padding: 24px;
   justify-content: space-between;
+  padding: 30px 20px 0;
+  align-items: center;
+  background-color: ${({ theme }) => theme.COLORS.GRAY_5};
 `;
 
 export const Title = styled.Text`
-  margin: 36px 102px 0 42px;
+  flex: 1;
+  margin-right: 25px;
+  justify-content: center;
+  text-align: center;
   ${({ theme }) => css`
     font-size: ${theme.FONT_SIZES.L}px;
     font-family: ${theme.FONT_WEIGHTS.BOLD};
     color: ${theme.COLORS.GRAY_1};
-  `}
+  `};
 `;
 
 export const Content = styled.View`
-  flex: 1;
-  height: 80%;
+  height: 85%;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  padding: 24px;
   padding: 24px;
   background-color: ${({ theme }) => theme.COLORS.GRAY_7};
 `;
