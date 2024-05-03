@@ -1,8 +1,15 @@
 import { PropsColorStyle } from "src/@types/styled";
 import styled, { css } from "styled-components/native";
 
-export const Container = styled.View<PropsColorStyle>`
+export const Container = styled.View`
   flex: 1;
+`;
+export const Header = styled.View<PropsColorStyle>`
+  flex: 1;
+  margin-bottom: -20px;
+  flex-direction: row;
+  padding: 30px 20px 0;
+  justify-content: center;
   background-color: ${({ type, theme }) =>
     type === "POSITIVE"
       ? theme.COLORS.GREEN_LIGHT
@@ -10,10 +17,12 @@ export const Container = styled.View<PropsColorStyle>`
       ? theme.COLORS.RED_LIGHT
       : theme.COLORS.GRAY_6};
 `;
+export const HeaderButtonIcon = styled.View`
+  padding-top: 40px;
+`;
 
 export const GeneralStats = styled.View`
-  height: 80%;
-  margin-top: 24px;
+  height: 75%;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   padding: 24px;
@@ -38,6 +47,7 @@ export const MealTotalSequence = styled.View`
 `;
 
 export const MealSide = styled.View`
+  height: 100px;
   flex-direction: row;
   align-items: center;
   gap: 12px;
