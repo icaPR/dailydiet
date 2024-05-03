@@ -24,7 +24,7 @@ export const Logo = styled(Image)`
 export const Perfil = styled(Image)`
   width: 48;
   height: 48;
-  border-width: 2.5;
+  border-width: 2px;
   border-color: ${({ theme }) => theme.COLORS.GRAY_2};
   border-radius: 50;
 `;
